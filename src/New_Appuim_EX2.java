@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 
+import com.aventstack.extentreports.MediaEntityModelProvider;
 
 public class New_Appuim_EX2 {
     static AndroidDriver driver;
@@ -66,45 +67,9 @@ public class New_Appuim_EX2 {
      Information_Report.NUMBER_FORMULA("seven");//click on 7 in calculator
      /// Editor_Formula.sendKeys(formFileSeven);// send 7 from file
      // Editor_Formula.sendKeys(String.valueOf(Seven));// send value of int
-     WebElement pre_result= driver.findElement(By.id("com.sec.android.app.popupcalculator:id/calc_tv_result"));
-     String further_result=pre_result.getText();
-        switch ("time") {///Assert check if result is right
-            case "plus": {
-                int expected=16;
-                int actual=Integer.parseInt(further_result);
-                assertEquals(expected,actual);}
-            break;
-
-            case "minus": {
-                int expected=2;
-                int actual= Integer.parseInt(further_result);
-                assertEquals(expected,actual);
-            }
-            break;
-            case "time": {
-                int expected=63;
-                int actual=Integer.parseInt(further_result);
-                assertEquals(expected,actual);
-               try{
-                   myTests.log(LogStatus.PASS,"Test 2:calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
-                           "in finally check if get real answer", "it is pass");
-               }catch (AssertionError E){
-                   myTests.log(LogStatus.FAIL,"Test 2:calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
-                           "in finally check if get real answer", "it is fail");
-               }
-            }
-            break;
-            case "Division": {
-                String expected="1.2857142857";
-                String actual=further_result;
-                assertEquals(expected,actual);
-            }
-            break;
-        }
+     Information_Report.Assert_RESULTED("plus");///Assert check if result is right \\Assert_RESULTED must be match to calculator_FORMULA//
     sumButton.click();//click on sum
-    // myTests.log(LogStatus.PASS,"Test 2:calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
-      //          "in finally check if get real answer", "it is pass");
-     myTests.log(LogStatus.INFO,"detail", MediaEntityBuilder.createScreenCaptureFromPath(Information_Report.takeScreenshot
+     myTests.log(LogStatus.INFO, MediaEntityBuilder.createScreenCaptureFromPath(Information_Report.takeScreenshot
              ("C:/Users/power play/IdeaProjects/AppiumEx1/ScreenShotTEST/"+System.currentTimeMillis())).build().toString());
 
     }

@@ -1,14 +1,20 @@
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.MediaEntityModelProvider;
+import com.relevantcodes.extentreports.LogStatus;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
 
 public class Information_Report {
 
@@ -26,6 +32,50 @@ public class Information_Report {
         }return ImagesPath+".png";
     }
 
+public static void Assert_RESULTED(String FORMULA){
+    WebElement pre_result= New_Appuim_EX2.driver.findElement(By.id("com.sec.android.app.popupcalculator:id/calc_tv_result"));
+    String further_result=pre_result.getText();
+    switch (FORMULA) {///Assert check if result is right
+        case "plus": {
+            int expected=16;
+            int actual=Integer.parseInt(further_result);
+            try {assertEquals(expected, actual);
+                New_Appuim_EX2.myTests.log(LogStatus.PASS, "Test 2: calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                        "in finally check if get real answer", "it is pass");
+            } catch (AssertionError E) {
+                New_Appuim_EX2.myTests.log(LogStatus.FAIL, "Test 2: calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                    "in finally check if get real answer", "it is fail");}
+        }break;
+        case "minus": {
+            int expected=2;
+            int actual= Integer.parseInt(further_result);
+            try {assertEquals(expected, actual);
+                New_Appuim_EX2.myTests.log(LogStatus.PASS, "Test 2: calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                        "in finally check if get real answer", "it is pass");
+            } catch (AssertionError E) {
+                New_Appuim_EX2.myTests.log(LogStatus.FAIL, "Test 2: calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                    "in finally check if get real answer", "it is fail");}}break;
+
+        case "time": {
+            int expected=63;
+            int actual=Integer.parseInt(further_result);
+            try {assertEquals(expected, actual);
+                New_Appuim_EX2.myTests.log(LogStatus.PASS, "Test 2: calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                        "in finally check if get real answer", "it is pass");
+            } catch (AssertionError E) {
+                New_Appuim_EX2.myTests.log(LogStatus.FAIL, "Test 2: calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                    "in finally check if get real answer", "it is fail");}}break;
+        case "Division": {
+            String expected="1.2857142857";
+            String actual=further_result;
+            try {assertEquals(expected, actual);
+                New_Appuim_EX2.myTests.log(LogStatus.PASS, "Test 2: calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                        "in finally check if get real answer", "it is pass");
+            } catch (AssertionError E) {
+                New_Appuim_EX2.myTests.log(LogStatus.FAIL, "Test 2: calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                    "in finally check if get real answer", "it is fail");}}break;
+    }
+}
     public static String DataFromFiles(String kEYDATA) throws Exception {
         File XmlFlies= new File("C:/קורס אוטומציה/APPIUM_XML/new 1.xml");
         DocumentBuilderFactory dbFactry=DocumentBuilderFactory.newInstance();
