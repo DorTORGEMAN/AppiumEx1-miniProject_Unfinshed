@@ -3,7 +3,6 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.android.AndroidDriver;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -63,7 +62,7 @@ public class New_Appuim_EX2 {
      // Editor_Formula.sendKeys(Seven+""+Nine);/// FOR CHECK IF Number in File working and check if them send to calculator
      WebElement sumButton= driver.findElement(By.id("com.sec.android.app.popupcalculator:id/calc_keypad_btn_equal"));
      Editor_Formula.sendKeys(formFileNine);// send 9 from file
-     Information_Report.calculator_FORMULA("time");//click on Formula equations
+     Information_Report.calculator_FORMULA("plus");//click on Formula equations
      Information_Report.NUMBER_FORMULA("seven");//click on 7 in calculator
      /// Editor_Formula.sendKeys(formFileSeven);// send 7 from file
      // Editor_Formula.sendKeys(String.valueOf(Seven));// send value of int
@@ -86,8 +85,13 @@ public class New_Appuim_EX2 {
                 int expected=63;
                 int actual=Integer.parseInt(further_result);
                 assertEquals(expected,actual);
-                 myTests.log(LogStatus.PASS,"Test 2:calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
-                        "in finally check if get real answer", "it is pass");
+               try{
+                   myTests.log(LogStatus.PASS,"Test 2:calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                           "in finally check if get real answer", "it is pass");
+               }catch (AssertionError E){
+                   myTests.log(LogStatus.FAIL,"Test 2:calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+                           "in finally check if get real answer", "it is fail");
+               }
             }
             break;
             case "Division": {
@@ -98,8 +102,8 @@ public class New_Appuim_EX2 {
             break;
         }
     sumButton.click();//click on sum
-     myTests.log(LogStatus.PASS,"Test 2:calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
-                "in finally check if get real answer", "it is pass");
+    // myTests.log(LogStatus.PASS,"Test 2:calculator_miniProject: Get in calculator and send Numbers and do same Formula math and " +
+      //          "in finally check if get real answer", "it is pass");
      myTests.log(LogStatus.INFO,"detail", MediaEntityBuilder.createScreenCaptureFromPath(Information_Report.takeScreenshot
              ("C:/Users/power play/IdeaProjects/AppiumEx1/ScreenShotTEST/"+System.currentTimeMillis())).build().toString());
 
