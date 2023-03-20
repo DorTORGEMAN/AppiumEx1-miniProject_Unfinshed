@@ -1,16 +1,31 @@
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.io.IOException;
 
 public class Information_Report {
 
 
 
     ///////////Methods
+    public  static String takeScreenshot(String ImagesPath){
+        TakesScreenshot takesScreenshot=(TakesScreenshot) New_Appuim_EX2.driver;
+        File screenShotFile =takesScreenshot.getScreenshotAs(OutputType.FILE);
+        File destinationFile=new File(ImagesPath+".png");
+        try {
+            FileUtils.copyFile(screenShotFile,destinationFile);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }return ImagesPath+".png";
+    }
+
     public static String DataFromFiles(String kEYDATA) throws Exception {
         File XmlFlies= new File("C:/קורס אוטומציה/APPIUM_XML/new 1.xml");
         DocumentBuilderFactory dbFactry=DocumentBuilderFactory.newInstance();
@@ -46,7 +61,6 @@ public class Information_Report {
             case "7":{New_Appuim_EX2.driver.findElement(By.id("com.sec.android.app.popupcalculator:id/calc_keypad_btn_07")).click();}break;
         }
     }
-    public static void Assert_FORMULA(String DATA) throws Exception { }
 
 
 }
